@@ -16,7 +16,7 @@ const getAll = (request, response) => {
 let contactNames = []
 const percorreArray  = () => {
   const { contatos: allContacts } = model.agenda;
-
+  
   contactNames = allContacts.map(c => c.nome)
 }
 
