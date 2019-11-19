@@ -1,10 +1,15 @@
 const express = require("express")
 const app = express()
 
+//conectando o banco de dados
+const database = require('./model/database')
+database.connect()
+
 //rotas
 const index = require("./routes/index")
 const contatos = require("./routes/contatosRoute")
 
+//
 app.use(function (request, response, next) {
   response.header("Access-Control-Allow-Origin", "*")
   response.header(
