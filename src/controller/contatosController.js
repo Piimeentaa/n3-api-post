@@ -35,6 +35,38 @@ const add = (request, response) => {
 
 
   }
+  const getName = (request, response) => {
+    const nomeP = request.params.nome
+    const regex = new RegExp(nomeP)
+    // const filtro = {nome: nomeP}
+    const filtro = {nome: regex}
+
+    model.find(filtro , (error, contatos) => {
+      if(error){
+        return response.status(500).send(error)
+      } else {
+        if(contato.lenght > 0){
+        return response.status(200).send(contatos)
+        }
+      }
+    })
+  }
+  const getById = (request, response) => {
+    const id = request.params.id
+
+    model.findById(id, (error, contato) =>{
+      if(error){
+        return response.status(500).send(error)
+      } else {
+        if(contato){
+        return response.status(200).send(contato)
+        }else{
+          return response.status(404).send("Contato não encontrado")
+        }
+      }
+    })
+  }
+
   // let contato = request.body
   // contato.id = Math.random().toString(36).substr(-8)
   
@@ -61,5 +93,7 @@ const add = (request, response) => {
 
 module.exports = {
   getAll,
-  add
+  add,
+  getName,
+  getById
 }
