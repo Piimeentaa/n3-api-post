@@ -66,6 +66,16 @@ const add = (request, response) => {
       }
     })
   }
+  const deleteById = (request, response) => {
+    const id = request.params.id
+    model.findByIdAndDelete(id, (error) =>{
+      if(error){
+        return response.status(500).send(error)       
+      }else{
+        return response.status(202).send("DELETADO")
+      }
+    })
+  }
 
   // let contato = request.body
   // contato.id = Math.random().toString(36).substr(-8)
@@ -95,5 +105,6 @@ module.exports = {
   getAll,
   add,
   getName,
-  getById
+  getById,
+  deleteById
 }
